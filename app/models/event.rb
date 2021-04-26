@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
   belongs_to :owner, class_name: "User"
 
 
@@ -26,6 +26,4 @@ class Event < ApplicationRecord
       errors.add(:start_at, "は終了時間よりも前に設定してください")
     end
   end
-
-
 end
