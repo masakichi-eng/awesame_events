@@ -1,9 +1,13 @@
 class Event < ApplicationRecord
+  searchkick language: "japanese"
+
   has_one_attached :image, dependent: false
   has_many :tickets, dependent: :destroy
   belongs_to :owner, class_name: "User"
   
-
+  validates :image, content_type: [:png, :jpg, :jpeg],
+  size: { less_than_or_equal_to: 10.megabytes },
+  dimension: { width: {max: 2000 }, height: { max:2000 } }
 
   validates :name, length: { maximum: 50}, presence: true
   validates :place, length: { maximum: 100}, presence: true
@@ -19,6 +23,18 @@ class Event < ApplicationRecord
   def created_by?(user)
     return false unless user
     owner_id == user.id
+    
+  end
+
+
+  def search_data
+    {
+      name: name,
+      place: place,
+      content: content,
+      owner_name: owner&.name,
+      start_at: start_at
+    }
     
   end
 
