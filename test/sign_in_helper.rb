@@ -3,7 +3,7 @@ module SignInHelper
     OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(
       user.provider,
-      uid: user.id,
+      uid: user.uid,
       info: { nickname: user.name,
               image: user.image_url })
         case 
