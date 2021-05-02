@@ -53,7 +53,7 @@ class EventsTest < ApplicationSystemTestCase
       accept_confirm do
         click_on "イベントを削除する"
       end
-      sleep 2
+      # sleep 2
       assert_selector "div.alert", text: "削除しました"
     end
   end
