@@ -12,11 +12,11 @@ jobs:
         ruby-version: 2.6
     - name: Configure sysctl limits
       run: |
-        sudo awapoff -a
+        sudo swapoff -a
         sudo sysctl -w vm.swappiness=1
         sudo sysctl -w fs.file-max=262144
         sudo sysctl -w vm.max_map_count=262144
-    -name: Run Elasticsearch
+    - name: Run Elasticsearch
       uses: elasticsearch-with-plugins-action@v1
       with:
         stack-version: 7.6.0
