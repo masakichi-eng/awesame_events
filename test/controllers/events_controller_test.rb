@@ -21,5 +21,4 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   #       end
   #     end
   # end
-
 end
