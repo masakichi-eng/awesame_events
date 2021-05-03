@@ -27,7 +27,8 @@ jobs:
         RAILS_ENV: test
       run: |
         sudo apt-get -yqq install libsqlite3-dev
-        bundle install
+        gem install bundler -v 2.2.1
+        bundle install --jobs 4 --retry 3
         bin/rails db:create
         bin/rails db:migrate
         bin/yarn install
