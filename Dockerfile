@@ -1,3 +1,8 @@
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+RUN elasticsearch-plugin install analysis-kuromoji
+
+RUN erasticsearch
+
 FROM ruby:2.7.1 AS nodejs
 
 WORKDIR /tmp
@@ -31,8 +36,7 @@ RUN yarn install
 COPY --chown=rails . /app
 RUN bin/rails assets:precompile
 
-# FROM docker.elastic.co/elasticsearch/elasticsearch:7.3.0
-# RUN elasticsearch-plugin install analysis-kuromoji
+
 
 VOLUME /app/public
 
